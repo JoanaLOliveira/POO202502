@@ -1,0 +1,73 @@
+Determine se cada uma das seguintes alternativas é verdadeira ou falsa. Se falsa, explique por quê.
+• O caso default é requerido na instrução de seleção switch.
+• A instrução break é requerida no último caso de uma instrução de seleção switch.
+• A expressão ((x > y)&&(a < b)) é verdadeira se (x > y) for verdadeiro ou (a < b) for
+verdadeira.
+• Uma expressão contendo o operador || é verdadeira se um ou ambos de seus operandos forem verdadeiros.
+• Para testar para uma série de valores em uma instrução switch, pode-se utilizar um
+hífen ( - ) entre os valores inicial e final da série em um rótulo case.
+• Listar casos consecutivamente sem instruções entre eles permite aos casos executar o mesmo conjunto de instruções.
+
+
+
+✅ RESUMO:
+Falso (default é opcional)
+
+Falso (break é opcional)
+
+Falso (&& exige ambos verdadeiros)
+
+Verdadeiro
+
+Falso (não se usa hífen em switch)
+
+Verdadeiro (fall-through)
+
+✅ SOLUÇÃO: 
+
+1. "O caso default é requerido na instrução de seleção switch."
+Falso - O default é opcional. Se nenhum case corresponder e não houver default, o switch não executa nenhum bloco.
+
+2. "A instrução break é requerida no último caso de uma instrução de seleção switch."
+Falso - O break é opcional em todos os casos, incluindo o último. Sem break, ocorre "fall-through", onde o código continua executando os casos abaixo.
+Exemplo:
+
+java
+switch (x) {
+    case 1: 
+        System.out.println("Um");
+        // Sem break: executa o próximo caso
+    case 2: 
+        System.out.println("Dois");
+        break;
+}
+Se x = 1, imprime "Um" e "Dois".
+
+3. "A expressão ((x > y) && (a < b)) é verdadeira se (x > y) for verdadeiro ou (a < b) for verdadeira."
+Falso - O operador && (E lógico) exige que ambos os operandos sejam verdadeiros. A afirmação descreve o comportamento do || (OU), não do &&.
+
+4. "Uma expressão contendo o operador || é verdadeira se um ou ambos de seus operandos forem verdadeiros."
+Verdadeiro - Isso é a definição do operador || (OU lógico): é verdadeiro se pelo menos um dos operandos for verdadeiro.
+
+5. "Para testar para uma série de valores em uma instrução switch, pode-se utilizar um hífen (-) entre os valores inicial e final da série em um rótulo case."
+Falso - Em Java, não é possível usar hífen para definir intervalos em case. Deve-se listar os valores individualmente ou usar múltiplos case sem break (fall-through).
+A partir do Java 14, é possível usar sintaxe como:
+
+java
+case 1, 2, 3 -> System.out.println("Entre 1 e 3");
+Mas não com hífen.
+
+6. "Listar casos consecutivamente sem instruções entre eles permite aos casos executar o mesmo conjunto de instruções."
+Verdadeiro - Isso é chamado de "fall-through". Se múltiplos case são listados sem break entre eles, todos executam o mesmo código até encontrar um break.
+Exemplo:
+
+java
+switch (x) {
+    case 1:
+    case 2:
+    case 3:
+        System.out.println("Entre 1 e 3");
+        break;
+}
+Para x = 1, 2 ou 3, imprime "Entre 1 e 3".
+
